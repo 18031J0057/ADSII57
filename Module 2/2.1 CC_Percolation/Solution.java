@@ -1,71 +1,86 @@
-import java.util.Scanner;
+import java.io.*; 
+import java.util.*; 
 
-public class Solution 
- {
+//This class represents a directed graph using adjacency list 
+//representation 
+class Solution
+{ 
+ public  int V;   // No. of vertices 
+public static int check;
+ // Array  of lists for Adjacency List Representation 
+  LinkedList<Integer> adj[]; 
 
-    // given an n-by-n matrix of open sites, return an n-by-n matrix
-    // of sites reachable from the top
-    public static boolean[][] flow(boolean[][] isOpen) 
+ // Constructor 
+ Solution(int v) 
+ { 
+     V = v; 
+     adj = new LinkedList[v]; 
+     for (int i=0; i<v; ++i) 
+         adj[i] = new LinkedList(); 
+ } 
+
+ //Function to add an edge into the graph 
+ void addEdge(int v, int w) 
+ { 
+     adj[v-1].add(w-1);// Add w to v's list. 
+     //adj[w].add(v);
+ } 
+
+ // A function used by DFS 
+ void DFSUtil(int v,boolean visited[]) 
+ { 
+     // Mark the current node as visited and print it 
+     visited[v] = true; 
+     check=v;
+     //System.out.print(v+" "); 
+     
+
+     // Recur for all the vertices adjacent to this vertex 
+     Iterator<Integer> i = adj[v].listIterator(); 
+     while (i.hasNext()) 
+     { 
+         int n = i.next(); 
+         if (!visited[n]) 
+             DFSUtil(n, visited); 
+     } 
+ } 
+
+ // The function to do DFS traversal. It uses recursive DFSUtil() 
+ void DFS(int v) 
+ { 
+     // Mark all the vertices as not visited(set as 
+     // false by default in java) 
+     boolean visited[] = new boolean[V]; 
+
+     // Call the recursive helper function to print DFS traversal 
+     DFSUtil(v, visited); 
+ } 
+
+ public static void main(String args[]) 
+ { 
+	 Scanner sc=new Scanner(System.in);
+	 int V=Integer.parseInt(sc.nextLine());
+     Solution g = new Solution(V); 
+     while(sc.hasNext())
      {
-        int n = isOpen.length;
-        boolean[][] isFull = new boolean[n][n];
-        for (int j = 0; j < n; j++) 
-          {
-            flow(isOpen, isFull, 0, j);
-          }
-        return isFull;
+    	 String s=sc.nextLine();
+    	 String[] t=s.split(" ");
+    	 g.addEdge(Integer.parseInt(t[0]), Integer.parseInt(t[1]));
      }
 
-    // determine set of full sites using depth first search
-    public static void flow(boolean[][] isOpen, boolean[][] isFull, int i, int j) 
-      {
-        int n = isOpen.length;
 
-        // base cases
-        if (i < 0 || i >= n) return;    // invalid row
-        if (j < 0 || j >= n) return;    // invalid column
-        if (!isOpen[i][j]) return;      // not an open site
-        if (isFull[i][j]) return;       // already marked as full
-         // mark i-j as full
-        isFull[i][j] = true;
-        flow(isOpen, isFull, i+1, j);   // down
-        flow(isOpen, isFull, i, j+1);   // right
-        flow(isOpen, isFull, i, j-1);   // left
-        flow(isOpen, isFull, i-1, j);   // up
-    }
-    public static boolean percolates(boolean[][] isOpen) {
-        int n = isOpen.length;
-        boolean[][] isFull = flow(isOpen);
-        for (int j = 0; j < n; j++) {
-            if (isFull[n-1][j]) return true;
-        }
-        return false;
-    }
+    // System.out.println("Following is Depth First Traversal "+ 
+                        //"(starting from vertex 2)"); 
 
-   
-  
-    public static void main(String[] args) 
-    {
-    	Scanner sc=new Scanner(System.in);
-    	int n=Integer.parseInt(sc.nextLine());
+     g.DFS(0); 
+     //System.out.println("end");
+     if(check==V-1)
+     {
+    	 System.out.println("true");
     	
-        boolean[][] isOpen = new boolean[n][n];
-        try 
-        {
-          while(sc.hasNext()) 
-           {
-        	String temp[]=sc.nextLine().split(" ");
-        	int i=Integer.parseInt(temp[0]);
-        	int j=Integer.parseInt(temp[1]);
-        	isOpen[i-1][j-1]=true;
-           }
-        }
-        catch(Exception e) 
-        {
-        	System.out.println("index out of bound"+e.getMessage());
-        }
-        
-        System.out.println(percolates(isOpen));
+     }else {
+    	 System.out.println("false");
      }
-
-}
+     
+ } 
+} 
