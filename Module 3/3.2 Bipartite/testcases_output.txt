@@ -1,0 +1,50 @@
+########## Testcase 0: Failed ##########
+Expected Output: 
+Graph is bipartite
+
+Your Output: 
+Enter the number of nodes in the graph
+Enter the adjacency matrix
+The given graph is bipartite
+----------------------------------------
+
+########## Testcase 1: Failed ##########
+Expected Output: 
+Graph is bipartite
+
+Your Output: 
+Enter the number of nodes in the graph
+Enter the adjacency matrix
+The given graph is bipartite
+----------------------------------------
+
+########## Testcase 2: Failed ##########
+Expected Output: 
+Graph is bipartite
+
+Your Output: 
+Enter the number of nodes in the graph
+Enter the adjacency matrix
+The given graph is bipartite
+----------------------------------------
+
+########## Testcase 3: Failed ##########
+Expected Output: 
+Graph is not a bipartite
+
+Your Output: 
+Enter the number of nodes in the graph
+Enter the adjacency matrix
+The given graph is not bipartite
+----------------------------------------
+
+########## Testcase 4: Failed ##########
+Expected Output: 
+Graph is not a bipartite
+
+Your Output: 
+Enter the number of nodes in the graph
+Exception in thread "main" java.lang.OutOfMemoryError: Java heap space
+	at Solution.main(Solution.java:64)
+----------------------------------------
+
