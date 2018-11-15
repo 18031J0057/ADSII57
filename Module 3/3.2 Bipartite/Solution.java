@@ -56,13 +56,13 @@ public class Solution
         Scanner scanner = null;
         try 
         {
-           System.out.println("Enter the number of nodes in the graph");
+           //System.out.println("Enter the number of nodes in the graph");
            scanner = new Scanner(System.in);
            number_of_nodes = Integer.parseInt(scanner.nextLine());
            int e=number_of_nodes = Integer.parseInt(scanner.nextLine());
            
            int adjacency_matrix[][] = new int[number_of_nodes + 1][number_of_nodes + 1];
-           System.out.println("Enter the adjacency matrix");
+           //System.out.println("Enter the adjacency matrix");
            for (int i = 1; i <= e; i++)
            {
                	String temp[]=scanner.nextLine().split(" ");
@@ -86,10 +86,10 @@ public class Solution
            Solution bipartiteBfs = new Solution(number_of_nodes);
            if (bipartiteBfs.isBipartite(adjacency_matrix, 1)) 
            {
-               System.out.println("The given graph is bipartite");
+               System.out.println("Graph is bipartite");
            } else
            {
-               System.out.println("The given graph is not bipartite");
+               System.out.println("Graph is not a bipartite");
            }
        } catch (InputMismatchException inputMismatch) 
        {

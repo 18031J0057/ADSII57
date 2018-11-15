@@ -78,7 +78,9 @@ public static int check;
      {
     	 System.out.println("true");
     	
-     }else {
+     }
+     else 
+     {
     	 System.out.println("false");
      }
      
